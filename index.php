@@ -12,7 +12,20 @@
 <body class="bg-gray-100 min-h-screen flex flex-col items-center p-5">
     <h1 class="text-3xl font-bold mb-4">P2P Video Calling</h1>
 
-    <p class="text-lg mb-2">Your Peer ID: <span id="peerId" class="text-blue-600 font-mono">Generating...</span></p>
+    <p class="text-lg mb-2">Your Peer ID:
+        <span id="peerId" class="text-blue-600 font-mono">Generating...</span>
+        <button id="copyPeerId" class="ml-2 bg-gray-200 text-sm px-2 py-1 rounded hover:bg-gray-300">Copy</button>
+    </p>
+    <script>
+        document.getElementById('copyPeerId').addEventListener('click', () => {
+            const peerId = document.getElementById('peerId').innerText;
+            navigator.clipboard.writeText(peerId).then(() => {
+                alert('Peer ID copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy Peer ID: ', err);
+            });
+        });
+    </script>
 
     <div class="flex gap-2 mb-4">
         <input type="text" id="remoteId" placeholder="Enter remote ID"
